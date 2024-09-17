@@ -34,6 +34,7 @@ public class DbJonConfig {
             .tasklet(new Tasklet() {
                 @Override
                 public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
+                    //throw new RuntimeException("Test");
                     System.out.println("helloDbStep1");
                     return RepeatStatus.FINISHED;
                 }

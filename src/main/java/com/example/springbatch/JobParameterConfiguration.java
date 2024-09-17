@@ -59,6 +59,7 @@ public class JobParameterConfiguration {
                 @Override
                 public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
                     System.out.println("JobParameterConfig_2 start");
+//                    throw new RuntimeException("JobParameterConfig_2 failed");
                     return RepeatStatus.FINISHED;
                 }
             })
