@@ -11,47 +11,44 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.w3c.dom.ls.LSOutput;
 
 @RequiredArgsConstructor
 @Configuration
-public class DbJonConfig {
+public class JobInstance {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
     @Bean
-    public Job jobDb(){
-        return jobBuilderFactory.get("HelloDbJob")
-            .start(step1())
-            .next(step2())
+    public Job jobIns(){
+        return jobBuilderFactory.get("JobInstance")
+            .start(JobStep1())
+            .next(JobStep2())
             .build();
     }
 
     @Bean
-    public Step step1(){
-        return stepBuilderFactory.get("helloDbStep1")
+    public Step JobStep1(){
+        return stepBuilderFactory.get("JobInstanceStep1")
+            .tasklet((a,b)->{
+                System.out.println("JobInstance Step1()");
+                return RepeatStatus.FINISHED;
+            })
+            .build();
+    }
+
+    @Bean
+    public Step JobStep2(){
+        return stepBuilderFactory.get("JobInstanceStep2")
             .tasklet(new Tasklet() {
                 @Override
                 public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-                    System.out.println("helloDbStep1");
+                    System.out.println("JobInstance Step2()");
                     return RepeatStatus.FINISHED;
                 }
             })
             .build();
     }
 
-    @Bean
-    public Step step2(){
-        return stepBuilderFactory.get("helloDbStep2")
-            .tasklet(new Tasklet() {
-                @Override
-                public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-                    System.out.println("helloDbStep2");
-                    return RepeatStatus.FINISHED;
-                }
-            })
-            .build();
-    }
 
 }

@@ -14,17 +14,18 @@ spring:
       driver-class-name: org.h2.Driver
 
 ---
-# ??? ????
 spring:
   config:
     activate:
       on-profile: mysql
   datasource:
     hikari:
-      jdbc-url: jdbc:mysql://localhost:3306/springbatch?useUnicode=true&characterEncoding=utf8
+      jdbc-url: jdbc:mysql://localhost:3307/springbatch
       username: root
-      password: ${DB_PASSWORD}
+      password: ${DOCKER_MYSQL_PASSWORD}  # 실제 MySQL 비밀번호로 변경
       driver-class-name: com.mysql.cj.jdbc.Driver
   batch:
+    job:
+      enabled: true  # false Spring auto start close, JobRunner test
     jdbc:
       initialize-schema: always
