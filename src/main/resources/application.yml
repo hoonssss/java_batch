@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: mysql #local
+    active: mysql #local local->H2
 ---
 spring:
   config:
