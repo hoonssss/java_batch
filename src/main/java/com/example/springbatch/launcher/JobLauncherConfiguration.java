@@ -21,9 +21,9 @@ public class JobLauncherConfiguration {
 
     @Bean
     public Job jobLauncherConfig(){
-        return jobBuilderFactory.get("jobLauncher")
+        return jobBuilderFactory.get("jobLauncherTest")
             .start(LauncherStep1())
-            .next(LauncherStep1())
+            .next(LauncherStep2())
             .build();
     }
 

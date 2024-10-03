@@ -23,7 +23,7 @@ public class JobParameterConfiguration {
 
     @Bean
     public Job JobParameterConfig(){
-        return jobBuilderFactory.get("jobParameterConfig")
+        return jobBuilderFactory.get("jobParameter")
             .start(JobParameterConfigStep_1())
             .next(JobParameterConfigStep_2())
             .build();

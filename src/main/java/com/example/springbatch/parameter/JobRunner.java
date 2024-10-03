@@ -16,7 +16,7 @@ public class JobRunner implements ApplicationRunner {
     private JobLauncher jobLauncher;
 
     @Autowired
-    private Job JobParameterConfig;
+    private Job jobParameter;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -26,6 +26,6 @@ public class JobRunner implements ApplicationRunner {
             .addLong("Long", 2L)
             .addDouble("Double", 3.14)
             .toJobParameters();
-        jobLauncher.run(JobParameterConfig, jobParameters);
+        jobLauncher.run(jobParameter, jobParameters);
     }
 }
