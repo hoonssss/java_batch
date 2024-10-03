@@ -26,6 +26,6 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
   batch:
     job:
-      enabled: true  # false Spring auto start close, JobRunner test
+      enabled: false  # false Spring auto start close, JobRunner test
     jdbc:
       initialize-schema: always
